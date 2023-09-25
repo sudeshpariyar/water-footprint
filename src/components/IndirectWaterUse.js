@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./IndirectWaterUse.css";
+import Dietry from "./Dietry";
 
 const IndirectWaterUse = ({ onDataFromChild }) => {
   const [knowElectricityBill, setKnowElectricityBill] = useState("");
@@ -7,6 +8,8 @@ const IndirectWaterUse = ({ onDataFromChild }) => {
   const [averageElectricityBill, setAverageElectricityBill] = useState();
   const [cylinderUse, setCylinderUSe] = useState();
   const [fireWood, setFireWood] = useState();
+
+  const [totalDietrySubmit, setTotalDietrySubmit] = useState();
 
   let costFromElectricity;
   if (knowElectricityBill === "yes") {
@@ -18,10 +21,20 @@ const IndirectWaterUse = ({ onDataFromChild }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(costFromElectricity, cylinderUse, fireWood);
-    const test = costFromElectricity + cylinderUse * 78.384 + fireWood * 138;
+    const test =
+      costFromElectricity +
+      cylinderUse * 78.384 +
+      fireWood * 138 +
+      totalDietrySubmit;
     onDataFromChild(test);
-    console.log("Indoor data", test);
   };
+  const handleDietrySubmitData = (data) => {
+    if (data) {
+      setTotalDietrySubmit(data);
+      console.log("this is the end", totalDietrySubmit);
+    }
+  };
+
   return (
     <div className="indirect-water-use-wrapper">
       <h2>Indirect Water Use</h2>
@@ -56,6 +69,7 @@ const IndirectWaterUse = ({ onDataFromChild }) => {
           type="number"
           onChange={(e) => setFireWood(e.target.value)}
         />
+        <Dietry handleDietrySubmitData={handleDietrySubmitData} />
         <button onClick={handleSubmit}>Submit</button>
       </form>
     </div>

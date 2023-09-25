@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <div className="app">
-        <div className="header-title">Water footprint caluclator.</div>
+        <h1 className="header-title">Water footprint calculator.</h1>
         <Routes>
           <Route path="/" element={<GeneralInfo />} />
           <Route path="/meterTap" element={<Metertap />} />
