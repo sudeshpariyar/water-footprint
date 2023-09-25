@@ -1,0 +1,8 @@
+.direct-water-use-wrapper{
+   
+}
+.direct-water-use-form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
