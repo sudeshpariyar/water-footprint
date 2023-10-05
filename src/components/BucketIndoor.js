@@ -10,7 +10,6 @@ const BucketIndoor = ({ handleIndoorBucketUse }) => {
   let total = 0;
 
   const handleIndoorSubmit = (e) => {
-    console.log(personalHygine, toiletryUse);
     e.preventDefault();
     total =
       (+personalHygine + +toiletryUse + +cookingUse + +dishWashingUse) * 365 +
