@@ -3,26 +3,27 @@ import React, { useState } from "react";
 import "./NoTapMeter.css";
 import DirectWaterUse from "./DirectWaterUse";
 import OutdoorWaterUse from "./OutdoorWaterUse";
-import IndirectWaterUse from "./IndirectWaterUse";
+import { useNavigate } from "react-router";
 
 const NoTapMeter = () => {
   const [indoorWaterUse, setIndoorWaterUse] = useState();
   const [outDoorWaterUse, setOutDoorUse] = useState();
   const [totalDirectWaterUsed, setTotalDirectWaterUsed] = useState();
-  const [waterFootPrint, setWaterFootPrint] = useState();
+  const navigate = useNavigate();
 
   const handleIndoorDataFromChild = (data) => {
     setIndoorWaterUse(data);
-    console.log("indoorDataFromChild", indoorWaterUse);
   };
 
   const handleOutDoorDataFromChild = (data) => {
     setOutDoorUse(data);
     setTotalDirectWaterUsed(indoorWaterUse + outDoorWaterUse);
   };
-  const handleDataFromIndirectChild = (data) => {
-    setWaterFootPrint(totalDirectWaterUsed + data);
-  };
+  if (totalDirectWaterUsed) {
+    let directWaterBill = totalDirectWaterUsed;
+    navigate("/indirectwateruse", { state: { directWaterBill } });
+  }
+
   return (
     <div className="no-metered-tap">
       <DirectWaterUse onDataFromIndoorChild={handleIndoorDataFromChild} />
@@ -37,10 +38,6 @@ const NoTapMeter = () => {
 
       {totalDirectWaterUsed && (
         <div> Total water used {totalDirectWaterUsed}</div>
-      )}
-      <IndirectWaterUse onDataFromChild={handleDataFromIndirectChild} />
-      {waterFootPrint && (
-        <div>Total water foot print for not metered is {waterFootPrint}</div>
       )}
     </div>
   );

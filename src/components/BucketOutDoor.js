@@ -5,12 +5,31 @@ const BucketOutDoor = ({ handleOutDoorBucketUse }) => {
   const [vehicleCleaning, setVehicleCleaning] = useState();
   const [gardening, setGardening] = useState();
   const [miscellaneous, setMiscellaneous] = useState();
-  let total = 0;
+
+  let waterCleaningPrint;
+  let vehicleCleaningPrint;
+  let gardeningPrint;
+  let miscellaneousPrint;
+
+  let weeks = 52.17;
+
+  if (cleaning) waterCleaningPrint = cleaning * weeks;
+  if (vehicleCleaning) vehicleCleaningPrint = vehicleCleaning * weeks;
+  if (gardening) gardeningPrint = gardening * weeks;
+  if (miscellaneous) miscellaneousPrint = miscellaneous * weeks;
 
   const handleOutDoorSubmit = (e) => {
     e.preventDefault();
-    total = (+cleaning + +vehicleCleaning + +gardening + +miscellaneous) * 52;
-    handleOutDoorBucketUse(total);
+    let total;
+    total =
+      waterCleaningPrint +
+      vehicleCleaningPrint +
+      gardeningPrint +
+      miscellaneousPrint;
+
+    if (total > 0) {
+      handleOutDoorBucketUse(total);
+    }
   };
   return (
     <div>

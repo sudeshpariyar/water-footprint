@@ -54,29 +54,16 @@ const DirectWaterUse = ({ onDataFromIndoorChild }) => {
       dishWashingFlow = 1.5;
     }
     if (laundrySystem === "washinMachine") {
-      console.log("washing machine", washingMachineCapacity, laundryTime, 12.5);
       laundryWater = washingMachineCapacity * laundryTime * 12.5;
     } else {
       if (tapFlowForLaundry === "high") {
         laundryWater = timeForLaundryTap * laundryTime * 4.5;
-        console.log("washing machine high", timeForLaundryTap, laundryTime);
       } else if (tapFlowForLaundry === "medium") {
         laundryWater = timeForLaundryTap * laundryTime * 2.25;
       } else if (tapFlowForLaundry === "low") {
         laundryWater = timeForLaundryTap * laundryTime * 1.5;
       }
     }
-    console.log(
-      "indirect water",
-      personalHygeneMin,
-      waterFlowLevel,
-      toileteryFlow,
-      waterTapMinCooking,
-      cookingFlow,
-      waterTapDiswashingMin,
-      dishWashingFlow,
-      laundryWater
-    );
 
     setIndoorDirectWaterConsumption(
       personalHygeneMin * waterFlowLevel +
@@ -85,7 +72,6 @@ const DirectWaterUse = ({ onDataFromIndoorChild }) => {
         waterTapDiswashingMin * dishWashingFlow +
         laundryWater
     );
-    //console.log("indoordirectwater", indoorDirectWaterConsumption);
 
     onDataFromIndoorChild(indoorDirectWaterConsumption);
   };

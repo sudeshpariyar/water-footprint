@@ -7,11 +7,27 @@ const OutdoorWaterUse = ({ onDataFromOutdoorChild }) => {
   const [gardening, setGardening] = useState();
   const [miscellaneous, setMiscellaneous] = useState();
   const [outDoorWaterUse, setOutDoorWaterUse] = useState();
+
+  let waterCleaningPrint;
+  let vehicleCleaningPrint;
+  let gardeningPrint;
+  let miscellaneousPrint;
+  let weeks = 52.17;
+
+  if (waterCleaning) waterCleaningPrint = waterCleaning * weeks;
+  if (vehicleCleaning) vehicleCleaningPrint = vehicleCleaning * weeks;
+  if (gardening) gardeningPrint = gardening * weeks;
+  if (miscellaneous) miscellaneousPrint = miscellaneous * weeks;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let total;
     total =
-      (waterCleaning + vehicleCleaning + gardening + miscellaneous) * 52.17;
+      waterCleaningPrint +
+      vehicleCleaningPrint +
+      gardeningPrint +
+      miscellaneousPrint;
+
     if (total) {
       setOutDoorWaterUse(total);
       onDataFromOutdoorChild(outDoorWaterUse);
@@ -21,7 +37,10 @@ const OutdoorWaterUse = ({ onDataFromOutdoorChild }) => {
   return (
     <>
       <h3>Direct Water consumption for Outdoor</h3>
-      <form className="outdoor-direct-water-consumption">
+      <form
+        className="outdoor-direct-water-consumption"
+        onSubmit={handleSubmit}
+      >
         <input
           placeholder="On an average how may liters of water do you use for cleaning per week(inside and outside)?"
           type="number"
@@ -42,7 +61,7 @@ const OutdoorWaterUse = ({ onDataFromOutdoorChild }) => {
           type="number"
           onChange={(e) => setMiscellaneous(e.target.value)}
         />
-        <button onClick={handleSubmit}>Calculate outdoor water use</button>
+        <button type="submit">Calculate outdoor water use</button>
       </form>
     </>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router";
 
 const Dietry = ({ handleDietrySubmitData }) => {
   const [vegetable, setVegetable] = useState();
@@ -14,30 +15,64 @@ const Dietry = ({ handleDietrySubmitData }) => {
   const [milk, setMilk] = useState();
   const [butter, setButter] = useState();
   const [egg, setEgg] = useState();
-  let total;
+  const [totalWaterFootPrintDietry, setTotalWaterFootPrintDietry] = useState();
+  const { state } = useLocation();
+
+  const navigate = useNavigate();
+  let vegetablePrint;
+  let fruitPrint;
+  let grainPrint;
+  let oilPrint;
+  let pulsesPrint;
+  let cerealsPrint;
+  let nutsPrint;
+  let goatsPrint;
+  let chickenPrint;
+  let porkPrint;
+  let milkPrint;
+  let butterPrint;
+  let eggPrint;
+
+  if (vegetable) vegetablePrint = vegetable * 332 * 52;
+  if (fruit) fruitPrint = fruit * 962 * 52;
+  if (grains) grainPrint = grains * 2729.2 * 12;
+  if (oil) oilPrint = oil * 2483 * 12;
+  if (pulses) pulsesPrint = pulses * 4055 * 12;
+  if (cereals) cerealsPrint = cereals * 1644 * 12;
+  if (nuts) nutsPrint = nuts * 9063 * 12;
+  if (goats) goatsPrint = goats * 8763 * 12;
+  if (chicken) chickenPrint = chicken * 4325 * 12;
+  if (pork) porkPrint = pork * 5988 * 12;
+  if (milk) milkPrint = milk * 1020 * 12;
+  if (butter) butterPrint = butter * 5553 * 12;
+  if (egg) eggPrint = egg * 3265 * 12;
 
   const handleDietrySubmit = (e) => {
     e.preventDefault();
-    total =
-      vegetable * 322 * 52 +
-      fruit * 962 * 52 +
-      grains * 2729.2 * 12 +
-      oil * 2483 * 12 +
-      pulses * 4055 * 12 +
-      cereals * 1644 * 12 +
-      nuts * 9063 * 12 +
-      goats * 8763 * 12 +
-      chicken * 4325 * 12 +
-      pork * 5988 * 12 +
-      milk * 1020 * 12 +
-      butter * 5553 * 12 +
-      egg * 3265 * 12;
-    handleDietrySubmitData(total);
+    let total =
+      vegetablePrint +
+      fruitPrint +
+      grainPrint +
+      oilPrint +
+      pulsesPrint +
+      cerealsPrint +
+      nutsPrint +
+      goatsPrint +
+      chickenPrint +
+      porkPrint +
+      milkPrint +
+      butterPrint +
+      eggPrint;
+    setTotalWaterFootPrintDietry(total);
   };
+
+  if (totalWaterFootPrintDietry > 0) {
+    navigate("/transport", { state: { state, totalWaterFootPrintDietry } });
+  }
   return (
     <div>
       <h3>Dietry</h3>
-      <form>
+      <form onSubmit={handleDietrySubmit}>
         <input
           placeholder="How many Kilograms of Vegetable do you buy on weekly basis?"
           type="number"
@@ -112,7 +147,7 @@ const Dietry = ({ handleDietrySubmitData }) => {
           onChange={(e) => setEgg(e.target.value)}
           placeholder="Egg"
         />
-        <button onClick={handleDietrySubmit}>calculate Dietry </button>
+        <button type="submit">calculate Dietry </button>
       </form>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./IndirectWaterUse.css";
-import Dietry from "./Dietry";
+import { useLocation, useNavigate } from "react-router";
 
 const IndirectWaterUse = ({ onDataFromChild }) => {
   const [knowElectricityBill, setKnowElectricityBill] = useState("");
@@ -8,37 +8,42 @@ const IndirectWaterUse = ({ onDataFromChild }) => {
   const [averageElectricityBill, setAverageElectricityBill] = useState();
   const [cylinderUse, setCylinderUSe] = useState();
   const [fireWood, setFireWood] = useState();
+  const { state } = useLocation();
 
-  const [totalDietrySubmit, setTotalDietrySubmit] = useState();
+  const navigate = useNavigate();
+
+  const [totalWaterFootPrintEnergy, setTotalWaterFootPrintEnergy] = useState();
 
   let costFromElectricity;
+  let footprintFromGas;
+  let footPrintFromFirewood;
+
   if (knowElectricityBill === "yes") {
-    costFromElectricity = (electricityBill / 8.48) * 12;
+    costFromElectricity = electricityBill * 31 * 12;
   } else if (knowElectricityBill === "no") {
-    costFromElectricity = (averageElectricityBill / 8.48) * 12;
+    costFromElectricity = averageElectricityBill * 31 * 12;
+  }
+
+  if (cylinderUse) {
+    footprintFromGas = cylinderUse * 78.384;
+  }
+  if (fireWood) {
+    footPrintFromFirewood = fireWood * 365 * 119.6;
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(costFromElectricity, cylinderUse, fireWood);
-    const test =
-      costFromElectricity +
-      cylinderUse * 78.384 +
-      fireWood * 138 +
-      totalDietrySubmit;
-    onDataFromChild(test);
+    let total = costFromElectricity + footprintFromGas + footPrintFromFirewood;
+    setTotalWaterFootPrintEnergy(total);
   };
-  const handleDietrySubmitData = (data) => {
-    if (data) {
-      setTotalDietrySubmit(data);
-      console.log("this is the end", totalDietrySubmit);
-    }
-  };
+  if (totalWaterFootPrintEnergy > 0) {
+    navigate("/dietry", { state: { state, totalWaterFootPrintEnergy } });
+  }
 
   return (
     <div className="indirect-water-use-wrapper">
       <h2>Indirect Water Use</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Do you know your electricity bill?</label>
         <select onChange={(e) => setKnowElectricityBill(e.target.value)}>
           <option>Choose option</option>
@@ -69,9 +74,13 @@ const IndirectWaterUse = ({ onDataFromChild }) => {
           type="number"
           onChange={(e) => setFireWood(e.target.value)}
         />
-        <Dietry handleDietrySubmitData={handleDietrySubmitData} />
-        <button onClick={handleSubmit}>Submit</button>
+        <button type="submit">Submit</button>
       </form>
+      {totalWaterFootPrintEnergy && (
+        <div>
+          Total Water Footprint for Energy : {totalWaterFootPrintEnergy}L
+        </div>
+      )}
     </div>
   );
 };
