@@ -78,16 +78,16 @@ const DirectWaterUse = ({ onDataFromIndoorChild }) => {
 
   return (
     <>
-      <h2>Direct Water Indoor Use</h2>
+      <h2>Indoor Water Use</h2>
       <from className="direct-water-use-form">
         <input
           type="number"
           onChange={(e) => setPersonalHygeneMin(e.target.value)}
-          placeholder="On an average how long do you run your tap on for all personal hygine purpose in a day?"
+          placeholder="On an average how long do you run your tap on for all personal hygine purpose in a day?(Minute)"
         />
-        <label>How would like to keep your tap flow?</label>
+        {/* // <label>Tap Preferance</label> */}
         <select onChange={(e) => setPersonalHygeneTapFlow(e.target.value)}>
-          <option>Choose water system</option>
+          <option>Tap Preferance</option>
           <option value="high">High</option>
           <option value="medium">Medium</option>
           <option value="low">Low</option>
@@ -104,9 +104,9 @@ const DirectWaterUse = ({ onDataFromIndoorChild }) => {
           onChange={(e) => setWaterTapMinCooking(e.target.value)}
           placeholder="On an average how long do you run your tap on  in a day while cooking?"
         />
-        <label>How would you like to keep your tap flow?</label>
+        {/* <label>Tap Preferance</label> */}
         <select onChange={(e) => setWaterTapCookingFlow(e.target.value)}>
-          <option>Choose water system</option>
+          <option>Tap Preferance</option>
           <option value="high">High</option>
           <option value="medium">Medium</option>
           <option value="low">Low</option>
@@ -116,9 +116,9 @@ const DirectWaterUse = ({ onDataFromIndoorChild }) => {
           onChange={(e) => setWaterTapDisWashingMin(e.target.value)}
           placeholder="On an average how long do you run your tap on  in a day while washing dishes?"
         />
-        <label>How would like to keep your tap flow?</label>
+        {/* <label>Tap Preferance</label> */}
         <select onChange={(e) => setWaterTapDishWashinFlow(e.target.value)}>
-          <option>Choose water system</option>
+          <option>Tap Preferance</option>
           <option value="high">High</option>
           <option value="medium">Medium</option>
           <option value="low">Low</option>
@@ -132,7 +132,7 @@ const DirectWaterUse = ({ onDataFromIndoorChild }) => {
         {laundrySystem === "washinMachine" && (
           <>
             <input
-              placeholder="What is the capacity of the Washing Machine?"
+              placeholder="What is the capacity of the Washing Machine?(KG)"
               type="number"
               onChange={(e) => setWashingMachineCapacity(e.target.value)}
             />
@@ -141,12 +141,12 @@ const DirectWaterUse = ({ onDataFromIndoorChild }) => {
         {laundrySystem === "tapwater" && (
           <>
             <input
-              placeholder="How long do you run your tap?"
+              placeholder="How long do you run your tap?(Minutes)"
               type="number"
               onChange={(e) => setTimeForLaundryTap(e.target.value)}
             />
             <select onChange={(e) => setTapFlowForLaundry(e.target.value)}>
-              <option>Choose water System</option>
+              <option>Tap Preferance</option>
               <option value="high">High</option>
               <option value="medium">Medium</option>
               <option value="low">Low</option>
@@ -154,12 +154,12 @@ const DirectWaterUse = ({ onDataFromIndoorChild }) => {
           </>
         )}
         <input
-          placeholder="How many time do you run laundry?"
+          placeholder="How many time do you run laundry?(Per Week)"
           type="number"
           onChange={(e) => setLaundryTime(e.target.value)}
         />
         <button onClick={handleSubmit}>
-          Calculate Direct water footprint.
+          Calculate Indoor water footprint.
         </button>
       </from>
     </>

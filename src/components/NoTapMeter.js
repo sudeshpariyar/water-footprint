@@ -29,7 +29,7 @@ const NoTapMeter = () => {
       <DirectWaterUse onDataFromIndoorChild={handleIndoorDataFromChild} />
       {indoorWaterUse && (
         <>
-          <div>Indirect Water Consumption {indoorWaterUse}</div>
+          <div>Indoor Water Consumption {indoorWaterUse}</div>
           <OutdoorWaterUse
             onDataFromOutdoorChild={handleOutDoorDataFromChild}
           />

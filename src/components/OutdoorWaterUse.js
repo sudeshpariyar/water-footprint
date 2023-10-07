@@ -36,28 +36,28 @@ const OutdoorWaterUse = ({ onDataFromOutdoorChild }) => {
 
   return (
     <>
-      <h3>Direct Water consumption for Outdoor</h3>
+      <h3>Outdoor Water Use (Per Week)</h3>
       <form
         className="outdoor-direct-water-consumption"
         onSubmit={handleSubmit}
       >
         <input
-          placeholder="On an average how may liters of water do you use for cleaning per week(inside and outside)?"
+          placeholder="On an average how may liters of water do you use for cleaning (inside and outside)?"
           type="number"
           onChange={(e) => setWaterCleaning(e.target.value)}
         />
         <input
-          placeholder="How many litres of water do you use for vehicle cleaning per week?"
+          placeholder="How many litres of water do you use for vehicle cleaning?"
           type="number"
           onChange={(e) => setVehicleCleaning(e.target.value)}
         />
         <input
-          placeholder="On average how many litres of water do you use for gardening purposes per week?"
+          placeholder="On average how many litres of water do you use for gardening purposes?"
           type="number"
           onChange={(e) => setGardening(e.target.value)}
         />
         <input
-          placeholder="For miscellaneous activities, how many litres of water do you use per week? (Swimming pool, aquarium, other)"
+          placeholder="For miscellaneous activities, how many litres of water do you use? (Swimming pool, aquarium, other)"
           type="number"
           onChange={(e) => setMiscellaneous(e.target.value)}
         />
