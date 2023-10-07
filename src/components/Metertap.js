@@ -17,7 +17,7 @@ const Metertap = () => {
   const handlePayPerMonth = (e) => {
     e.preventDefault();
     let directWaterBill = (costPerMonth * 75 * 12) / state.houseHoldMember;
-    navigate("/indirectwateruse", { state: { directWaterBill } });
+    navigate("/indirectwateruse", { state: { state, directWaterBill } });
   };
 
   return (
@@ -27,7 +27,7 @@ const Metertap = () => {
           Name: {state.name} Hosehold Members: {state.houseHoldMember}
         </div>
       )}
-      <label>Do you know anything about water Bills?</label>
+      <label>Do you know your water bills?</label>
       <select onChange={(e) => setMeterTapBill(e.target.value)}>
         <option>Select</option>
         <option value="yes">Yes</option>

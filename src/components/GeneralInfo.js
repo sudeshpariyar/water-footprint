@@ -46,7 +46,6 @@ const GeneralInfo = () => {
           placeholder="Number of household member?"
           onChange={(e) => setHouseHoldMember(e.target.value)}
         />
-        <label>What kind of water system do you have at your residence?</label>
         <label>Do you know anything about water footprint?</label>
         <select onChange={(e) => setKnowWaterFootPrint(e.target.value)}>
           <option value="yes">Yes</option>
@@ -57,8 +56,14 @@ const GeneralInfo = () => {
             Water footprint is an environmental indicator that measures the
             volume of fresh water (in litres or cubic metres) used throughout
             the entire production chain of a consumer item or service.
+            <br />
+            <a href="https://www.waterfootprint.org/?fbclid=IwAR2u1kfXT5x3CgXtRhJsIphaFJ2-mlQMwYR9oUJMQjtPLoGj8-23i0KNeXs">
+              https://www.waterfootprint.org
+            </a>
           </span>
         )}
+
+        <label>What kind of water system do you have at your residence?</label>
         <select onChange={(e) => setWaterSystem(e.target.value)}>
           <option>Choose water system</option>
           <option value="meterTap">Metered Tap</option>

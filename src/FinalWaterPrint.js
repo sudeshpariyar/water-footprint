@@ -3,29 +3,39 @@ import { useLocation } from "react-router";
 
 const FinalWaterPrint = () => {
   const { state } = useLocation();
+
   let shopping = state.shoppingPrint;
   let transport = state.state.transportFootPrint;
   let dietry = state.state.state.totalWaterFootPrintDietry;
+
   let energy = state.state.state.state.totalWaterFootPrintEnergy;
   let direct = state.state.state.state.state.directWaterBill;
+  let inDirect = shopping + transport + dietry + energy;
   let total;
   if (shopping && transport && dietry && energy && direct) {
-    total = shopping + transport + dietry + energy + direct;
+    total = Math.round(
+      (shopping + transport + dietry + energy + direct) / 1000
+    ).toFixed(2);
   }
 
   return (
     <>
-      <label>Final Water Print</label>
+      <h3>Final Water Footprint</h3>
       <br />
-      <label>Shopping Print</label>: {state.shoppingPrint}
+      <label>Shopping Water Footprint</label>: {state.shoppingPrint}
       <br />
-      <label>Transport Foot Print</label>:{state.state.transportFootPrint}
+      <label>Transport Water Footprint</label>:{state.state.transportFootPrint}
       <br />
-      <label>Dietry</label>:{state.state.state.totalWaterFootPrintDietry}
+      <label>Dietry Water Footprint</label>:{" "}
+      {state.state.state.totalWaterFootPrintDietry}
       <br />
-      <label>Energy</label>: {state.state.state.state.totalWaterFootPrintEnergy}
+      <label>Energy Water Footprint</label>:{" "}
+      {state.state.state.state.totalWaterFootPrintEnergy}
       <br />
-      <label>Direct Water bill</label>:
+      <br />
+      <label>Indirect water Footprint:</label> {inDirect}
+      <br />
+      <label>Direct Water Footprint</label>:{" "}
       {state.state.state.state.state.directWaterBill}
       <br />
       {total && <h3>Total water footprint : {total}</h3>}

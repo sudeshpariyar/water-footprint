@@ -17,18 +17,20 @@ const IndirectWaterUse = ({ onDataFromChild }) => {
   let costFromElectricity;
   let footprintFromGas;
   let footPrintFromFirewood;
+  let houseHoldMembership = state.state.houseHoldMember;
 
   if (knowElectricityBill === "yes") {
-    costFromElectricity = electricityBill * 31 * 12;
+    costFromElectricity = (electricityBill * 31.83 * 12) / houseHoldMembership;
   } else if (knowElectricityBill === "no") {
-    costFromElectricity = averageElectricityBill * 31 * 12;
+    costFromElectricity =
+      (averageElectricityBill * 31.83 * 12) / houseHoldMembership;
   }
 
   if (cylinderUse) {
-    footprintFromGas = cylinderUse * 78.384;
+    footprintFromGas = (cylinderUse * 78.384) / houseHoldMembership;
   }
   if (fireWood) {
-    footPrintFromFirewood = fireWood * 365 * 119.6;
+    footPrintFromFirewood = (fireWood * 365 * 119.6) / houseHoldMembership;
   }
 
   const handleSubmit = async (e) => {
@@ -59,7 +61,7 @@ const IndirectWaterUse = ({ onDataFromChild }) => {
         )}
         {knowElectricityBill === "no" && (
           <input
-            placeholder="Please use the average bill paid in Nepal?"
+            placeholder="Please use the average bill paid in Nepal?(NRS 280)"
             type="number"
             onChange={(e) => setAverageElectricityBill(e.target.value)}
           />
@@ -70,7 +72,7 @@ const IndirectWaterUse = ({ onDataFromChild }) => {
           onChange={(e) => setCylinderUSe(e.target.value)}
         />
         <input
-          placeholder="On avegare in a day how long do you use a firewoo?(hour)"
+          placeholder="On avegare in a day how long do you use firewood in a day?(Hour)"
           type="number"
           onChange={(e) => setFireWood(e.target.value)}
         />

@@ -50,19 +50,20 @@ const Dietry = ({ handleDietrySubmitData }) => {
   const handleDietrySubmit = (e) => {
     e.preventDefault();
     let total =
-      vegetablePrint +
-      fruitPrint +
-      grainPrint +
-      oilPrint +
-      pulsesPrint +
-      cerealsPrint +
-      nutsPrint +
-      goatsPrint +
-      chickenPrint +
-      porkPrint +
-      milkPrint +
-      butterPrint +
-      eggPrint;
+      (vegetablePrint +
+        fruitPrint +
+        grainPrint +
+        oilPrint +
+        pulsesPrint +
+        cerealsPrint +
+        nutsPrint +
+        goatsPrint +
+        chickenPrint +
+        porkPrint +
+        milkPrint +
+        butterPrint +
+        eggPrint) /
+      state.state.state.houseHoldMember;
     setTotalWaterFootPrintDietry(total);
   };
 
@@ -71,7 +72,10 @@ const Dietry = ({ handleDietrySubmitData }) => {
   }
   return (
     <div>
-      <h3>Dietry</h3>
+      <h3>Dietary</h3>
+      <br />
+      <h3>vegetable and Food Products</h3>
+
       <form onSubmit={handleDietrySubmit}>
         <input
           placeholder="How many Kilograms of Vegetable do you buy on weekly basis?"
@@ -114,8 +118,7 @@ const Dietry = ({ handleDietrySubmitData }) => {
         />
         <h3>Animal Products</h3>
         <label>
-          How many Kilograms of Meat (listed below) do you buy on Monthley
-          basis?
+          How many Kilograms of Meat (listed below) do you buy on monthly basis?
         </label>
         <input
           type="number"
@@ -135,7 +138,7 @@ const Dietry = ({ handleDietrySubmitData }) => {
         <input
           type="number"
           onChange={(e) => setMilk(e.target.value)}
-          placeholder="Milk"
+          placeholder="Milk (per liter)"
         />
         <input
           type="number"
