@@ -1,0 +1,40 @@
+.final-waterprint-wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+}
+svg{
+    width: 100px;
+}
+.chart-wrapper{
+    display: flex;
+    flex-direction: column;
+    border:  1px solid #e6e6e6;
+    padding: 1rem;
+    font-size: 0.8rem;
+    gap: 1rem;
+    border-radius: 1rem;
+}
+.label{
+    display: flex;
+    flex-direction: column;  
+} 
+.label-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+.inDirect-chart{
+    width: 0.8rem;
+    height: 0.8rem;
+    background-color: #E38627;
+    border-radius: 100%;
+}
+.direct-chart{
+    width: 0.8rem;
+    height: 0.8rem;
+    background-color: #C13C37;    
+    border-radius: 100%;
+
+}

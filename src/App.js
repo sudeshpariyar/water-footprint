@@ -8,7 +8,7 @@ import NoTapMeter from "./components/NoTapMeter";
 import { Route, Routes } from "react-router-dom";
 import Transport from "./components/Transport";
 import Shopping from "./components/Shopping";
-import FinalWaterPrint from "./FinalWaterPrint";
+import FinalWaterPrint from "./components/FinalWaterPrint";
 
 function App() {
   return (

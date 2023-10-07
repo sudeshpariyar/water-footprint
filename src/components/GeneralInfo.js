@@ -14,7 +14,7 @@ const GeneralInfo = () => {
     e.preventDefault();
     switch (waterSystem) {
       case "meterTap":
-        navigate("/meterTap", { state: { name, houseHoldMember } });
+        navigate("/meterTap", { state: { name, houseHoldMember, state } });
         break;
       case "noMeterTap":
         navigate("/noMeterTap");
